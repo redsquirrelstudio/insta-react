@@ -1,0 +1,43 @@
+{
+  "private": false,
+  "name": "insta-react",
+  "version": "1.0.0",
+  "description": "Insta-react is a simple React component for displaying Instagram account or hashtag post images.",
+  "main": "./lib/InstaReact.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redsquirrelstudio/insta-react.git"
+  },
+  "author": "redsquirrelstudio",
+  "license": "MIT",
+  "keywords": [
+    "React",
+    "instagram",
+    "feed",
+    "component",
+    "customisable",
+    "socialmedia"
+  ],
+  "bugs": {
+    "url": "https://github.com/redsquirrelstudio/insta-react/issues"
+  },
+  "homepage": "https://github.com/redsquirrelstudio/insta-react#readme",
+  "dependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-react-jsx": "^7.12.12",
+    "@babel/preset-react": "^7.12.10",
+    "babel-loader": "^8.2.2",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^5.0.1",
+    "path": "^0.12.7",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.11.0",
+    "webpack-cli": "^4.2.0"
+  }
+}
