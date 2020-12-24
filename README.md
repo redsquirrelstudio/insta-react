@@ -5,7 +5,7 @@ Insta-react is a simple React component for displaying instagram account or hash
 #### <a href="https://github.com/redsquirrelstudio/insta-react">Github Repo</a> <img width=20 src="https://devicon.dev/devicon.git/icons/github/github-original.svg" >
 #### <a href="https://www.npmjs.com/package/insta-react">NPM</a> <img width=20 src="https://devicon.dev/devicon.git/icons/npm/npm-original-wordmark.svg" >
 
-## Installation 
+## Installation
 Insta-react can be installed with both npm and yarn as usual.
 ```bash
 npm install insta-react
@@ -82,7 +82,6 @@ const App = () => {
 ```
 
 This component is also available for Vue.js here: https://www.npmjs.com/package/insta-vue
-
 
 
 

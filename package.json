@@ -1,43 +1,53 @@
 {
-  "private": false,
   "name": "insta-react",
   "version": "1.0.0",
-  "description": "Insta-react is a simple React component for displaying Instagram account or hashtag post images.",
-  "main": "./lib/InstaReact.js",
-  "scripts": {
-    "build": "webpack"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/redsquirrelstudio/insta-react.git"
-  },
+  "description": "Insta-react is a simple React component for displaying instagram account or hashtag post images.",
   "author": "redsquirrelstudio",
   "license": "MIT",
-  "keywords": [
-    "React",
-    "instagram",
-    "feed",
-    "component",
-    "customisable",
-    "socialmedia"
-  ],
-  "bugs": {
-    "url": "https://github.com/redsquirrelstudio/insta-react/issues"
+  "repository": "redsquirrelstudio/insta-react",
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "source": "src/index.js",
+  "engines": {
+    "node": ">=10"
   },
-  "homepage": "https://github.com/redsquirrelstudio/insta-react#readme",
-  "dependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/plugin-transform-react-jsx": "^7.12.12",
-    "@babel/preset-react": "^7.12.10",
-    "babel-loader": "^8.2.2",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-0": "^6.24.1",
-    "css-loader": "^5.0.1",
-    "path": "^0.12.7",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "style-loader": "^2.0.0",
-    "webpack": "^5.11.0",
-    "webpack-cli": "^4.2.0"
-  }
+  "scripts": {
+    "build": "microbundle-crl --no-compress --format modern,cjs",
+    "start": "microbundle-crl watch --no-compress --format modern,cjs",
+    "prepare": "run-s build",
+    "test": "run-s test:unit test:lint test:build",
+    "test:build": "run-s build",
+    "test:lint": "eslint .",
+    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
+    "test:watch": "react-scripts test --env=jsdom",
+    "predeploy": "cd example && npm install && npm run build",
+    "deploy": "gh-pages -d example/build"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0"
+  },
+  "devDependencies": {
+    "microbundle-crl": "^0.13.10",
+    "babel-eslint": "^10.0.3",
+    "cross-env": "^7.0.2",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-config-standard-react": "^9.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "gh-pages": "^2.2.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1"
+  },
+  "files": [
+    "dist"
+  ]
 }
