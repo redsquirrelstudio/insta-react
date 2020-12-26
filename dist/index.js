@@ -17,6 +17,10 @@ var InstaReact = function InstaReact(_ref) {
       posts = _React$useState[0],
       setPosts = _React$useState[1];
 
+  var _React$useState2 = React.useState(false),
+      hashtag = _React$useState2[0],
+      setHashtag = _React$useState2[1];
+
   var link = function link(url) {
     if (links) {
       window.open(url, '_blank');
@@ -24,61 +28,37 @@ var InstaReact = function InstaReact(_ref) {
   };
 
   var getPosts = function getPosts() {
-    if (tag[0] === '#') {
-      fetch("https://www.instagram.com/explore/tags/" + tag.replace('#', '') + "/?__a=1").then(function (response) {
-        response.json().then(function (data) {
-          if (data.hasOwnProperty('graphql')) {
-            var new_posts = [];
+    setHashtag(tag[0] === '#');
+    var query = hashtag ? "https://www.instagram.com/explore/tags/" + tag.replace('#', '') + "/?__a=1" : "https://www.instagram.com/" + tag + "/?__a=1";
+    fetch(query).then(function (response) {
+      if (response.status === 404) {
+        console.error((hashtag ? 'Hashtag' : 'Account') + " not found for the tag " + tag);
+      }
 
-            for (var i = 0; i < quantity; i++) {
-              var edge = data.graphql.hashtag.edge_hashtag_to_media.edges[i];
+      response.json().then(function (data) {
+        if (data.hasOwnProperty('graphql')) {
+          var new_posts = [];
 
-              if (edge) {
-                var post = edge.node;
-                new_posts.push({
-                  id: post.id,
-                  src: post.display_url,
-                  url: "https://www.instagram.com/p/" + post.shortcode + "/",
-                  alt: post.accessibility_caption,
-                  description: post.edge_media_to_caption.edges[0]['node']['text']
-                });
-              }
+          for (var i = 0; i < quantity; i++) {
+            var post = hashtag ? data.graphql.hashtag.edge_hashtag_to_media.edges[i].node : data.graphql.user.edge_owner_to_timeline_media.edges[i].node;
+
+            if (post) {
+              new_posts.push({
+                id: post.id,
+                src: post.display_url,
+                url: "https://www.instagram.com/p/" + post.shortcode + "/",
+                alt: post.accessibility_caption,
+                description: post.edge_media_to_caption.edges[0]['node']['text']
+              });
             }
-
-            setPosts(new_posts);
           }
-        });
-      })["catch"](function (error) {
-        console.error("Issue getting Instagram content: " + error);
+
+          setPosts(new_posts);
+        }
       });
-    } else {
-      fetch("https://www.instagram.com/" + tag + "/?__a=1").then(function (response) {
-        response.json().then(function (data) {
-          if (data.hasOwnProperty('graphql')) {
-            var new_posts = [];
-
-            for (var i = 0; i < quantity; i++) {
-              var edge = data.graphql.user.edge_owner_to_timeline_media.edges[i];
-
-              if (edge) {
-                var post = edge.node;
-                new_posts.push({
-                  id: post.id,
-                  src: post.display_url,
-                  url: "https://www.instagram.com/p/" + post.shortcode + "/",
-                  alt: post.accessibility_caption,
-                  description: post.edge_media_to_caption.edges[0]['node']['text']
-                });
-              }
-            }
-
-            setPosts(new_posts);
-          }
-        });
-      })["catch"](function (error) {
-        console.error("Issue getting Instagram content: " + error);
-      });
-    }
+    })["catch"](function (error) {
+      console.error("Issue getting Instagram content: " + error);
+    });
   };
 
   React.useEffect(function () {
