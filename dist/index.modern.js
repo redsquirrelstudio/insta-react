@@ -62,24 +62,40 @@ var InstaReact = function InstaReact(_ref) {
   React.useEffect(function () {
     getPosts();
   }, []);
-  return React.DOM("div", {
-    className: "insta-react"
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      width: '100%'
+    }
   }, posts.map(function (post) {
-    return React.DOM("div", {
+    return /*#__PURE__*/React.createElement("div", {
       onClick: function onClick() {
         return link(post.url);
       },
-      className: "post",
       style: {
         cursor: links ? 'pointer' : 'default',
-        width: 100 / cols + "%"
+        width: 100 / cols + "%",
+        display: 'block',
+        padding: '10px',
+        boxSizing: 'border-box',
+        height: 'auto'
       },
       key: post.id
-    }, React.DOM("img", {
+    }, /*#__PURE__*/React.createElement("img", {
       alt: post.alt,
-      src: post.src
-    }), descriptions ? React.DOM("p", {
-      className: "description"
+      src: post.src,
+      style: {
+        width: '100%'
+      }
+    }), descriptions ? /*#__PURE__*/React.createElement("p", {
+      style: {
+        marginTop: '0.5rem',
+        width: '100%',
+        color: '#FFF',
+        fontSize: '0.9rem',
+        mixBlendMode: 'difference'
+      }
     }, post.description) : null);
   }));
 };
