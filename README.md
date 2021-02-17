@@ -1,4 +1,7 @@
-# Insta-react <img width=25 src="https://devicon.dev/devicon.git/icons/react/react-original.svg"> <img width=25 src="https://instagram-brand.com/wp-content/uploads/2016/11/Instagram_AppIcon_Aug2017.png?w=300">
+# [DEPRECATED] Insta-react <img width=25 src="https://devicon.dev/devicon.git/icons/react/react-original.svg"> <img width=25 src="https://instagram-brand.com/wp-content/uploads/2016/11/Instagram_AppIcon_Aug2017.png?w=300">
+
+[Warning] Insta-react will no longer function due to the new CORS policy Instagram has added to the endpoint the component used to get data.
+Please migrate to using Instagram's basic display API here: <a href="https://developers.facebook.com/docs/instagram-basic-display-api"> https://developers.facebook.com/docs/instagram-basic-display-api </a>
 
 Insta-react is a simple React component for displaying instagram account or hashtag post images.
 
